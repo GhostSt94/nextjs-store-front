@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <CartProvider>
       <html lang="en" className={montserrat.className}>
-        <body>
+        <body suppressHydrationWarning={true} >
           <Navbar></Navbar>
           <OffCanvaCart></OffCanvaCart>
           {children}

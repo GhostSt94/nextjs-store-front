@@ -18,7 +18,11 @@ export default function OffCanvaCart() {
                     </div>
 
                     <div className="overflow-y-auto flex flex-col gap-3 flex-1 cartItems">
-                        {cartItems.map(item => <CartItem key={item.id} data={item} />)}
+                        {
+                            cartItems.length ?
+                                (cartItems.map(item => <CartItem key={item.id} data={item} />))
+                                : (<h1 className="text-gray-500 text-center my-10">No item added to cart</h1>)
+                        }
                     </div>
                     <div className="flex justify-between">
                         {/* TODO: set Total */}
