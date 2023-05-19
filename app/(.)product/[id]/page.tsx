@@ -83,17 +83,17 @@ export default function MyDialog() {
                                                 </div>
                                             )}
                                         </div>
-                                        <p className='line-clamp-4 md:line-clamp-5 text-sm mb-2 md:mb-0'>{product?.description}</p>
+                                        <p className='line-clamp-4 md:line-clamp-5 text-sm mb-2 md:mb-1'>{product?.description}</p>
                                     </div>
                                     <div className='space-y-3 text-sm'>
                                         {product?.id && isProductAddedToCart(product.id) ?
                                             (
-                                                <div className='flex justify-center items-center gap-2 text-green-600'>
+                                                <div className='flex justify-center items-center gap-2 text-green-600 py-2 md:py-3'>
                                                     <CheckIcon className='h-4 w-4' />
                                                     <h5> Product added to cart</h5>
                                                 </div>
                                             ) : (
-                                                <button onClick={() => product?.id && increaseItemQuantity(product.id)} className='button py-2 md:py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
+                                                <button onClick={() => product?.id && increaseItemQuantity(product.id, { id: product.id, price: product.price, quantity: 1 })} className='button py-2 md:py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
                                                     <ShoppingCartIcon className='h-4 w-4' />
                                                     Add to cart
                                                 </button>

@@ -6,7 +6,7 @@ import CartItem from "./CartItem"
 import { formatCurrency } from "@/utils"
 
 export default function OffCanvaCart() {
-    const { closeCart, isOpen, cartItems } = useShoppingCart()
+    const { closeCart, isOpen, cartItems, total } = useShoppingCart()
 
     return (
         <>
@@ -26,8 +26,8 @@ export default function OffCanvaCart() {
                     </div>
                     <div className="flex justify-between">
                         {/* TODO: set Total */}
-                        <h5 className="font-semibold">Total: (TODO)</h5>
-                        <h1>{formatCurrency(0)}</h1>
+                        <h5 className="font-semibold">Total:</h5>
+                        <h1>{formatCurrency(total())}</h1>
                     </div>
                 </div>
             </div>)}

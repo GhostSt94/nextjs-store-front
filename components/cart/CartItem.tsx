@@ -34,9 +34,9 @@ export default function CartItem({ data }: Props) {
                 {item?.title}
             </h4>
             <div className="flex items-center border text-white font-bold">
-                <button className="p-1 bg-primary-200 hover:scale-105 hover:shadow" onClick={() => decreaseItemQuantity(data.id)}>-</button>
+                <button className="p-1 bg-primary-200 hover:scale-105 hover:shadow" onClick={() => decreaseItemQuantity(data.id, { id: data.id, price: item?.price || 0, quantity: data.quantity })}>-</button>
                 <h5 className="font-semibold text-primary-200 px-2">{data.quantity}</h5>
-                <button className="p-1 bg-primary-200 hover:scale-105 hover:shadow" onClick={() => increaseItemQuantity(data.id)}>+</button>
+                <button className="p-1 bg-primary-200 hover:scale-105 hover:shadow" onClick={() => increaseItemQuantity(data.id, { id: data.id, price: item?.price || 0, quantity: data.quantity })}>+</button>
             </div>
             <div>
                 <TrashIcon className="w-4 h-4 hover:text-red-400 cursor-pointer hover:scale-105" onClick={() => removeFromCart(data.id)} />
