@@ -1,5 +1,6 @@
 import ProductImage from "@/components/product/ProductImage"
 import { notFound } from 'next/navigation'
+import { formatCurrency } from "@/utils"
 
 type Props = {
   params: {
@@ -20,7 +21,7 @@ export default async function ProductPage({ params: { id } }: Props) {
         <div className="divide-y">
           <div className='space-y-2 pb-8'>
             <h1 className="text-2xl md:text-4xl font-bold">{product.title}</h1>
-            <h2 className="text-gray-500 font-bold text-xl md:text-4xl">{product.price} $</h2>
+            <h2 className="text-gray-500 font-bold text-xl md:text-4xl">{formatCurrency(product.price)}</h2>
           </div>
           <div className="pt-8">
             <p className="text-xs md:text-sm">

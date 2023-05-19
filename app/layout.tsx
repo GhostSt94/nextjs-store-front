@@ -2,6 +2,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Montserrat } from 'next/font/google'
+import { CartProvider } from '@/components/context/CartContext'
+import OffCanvaCart from '@/components/cart/OffCanvaCart'
 
 export const metadata = {
   title: 'Shopability',
@@ -19,12 +21,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={montserrat.className}>
-      <body>
-        <Navbar></Navbar>
-        {children}
-        <Footer></Footer>
-      </body>
-    </html>
+    <CartProvider>
+      <html lang="en" className={montserrat.className}>
+        <body>
+          <Navbar></Navbar>
+          <OffCanvaCart></OffCanvaCart>
+          {children}
+          <Footer></Footer>
+        </body>
+      </html>
+    </CartProvider>
   )
 }

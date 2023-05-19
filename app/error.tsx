@@ -15,7 +15,7 @@ export default function Error({ error, reset }: { error: { message: string }, re
             />
             <button onClick={() => {
                 reset()
-            }} className="p-1.5 border text-black hover:shadow hover:bg-lblue-200 hover:text-white">Retry</button>
+            }} className="p-1.5 border text-black hover:shadow hover:bg-primary-200 hover:text-white">Retry</button>
         </div>
     )
 }

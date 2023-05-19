@@ -9,4 +9,9 @@ type Product ={
     image: string,
     title: string,
     id: number,
-  }
+}
+  
+type CartItem = {
+    id: number
+    quantity: number
+}

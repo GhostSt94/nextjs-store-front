@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
 import { useParams, useRouter } from 'next/navigation'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
-import { StarIcon, ShoppingCartIcon, ArrowUpTrayIcon } from '@heroicons/react/24/solid'
+import { StarIcon, ShoppingCartIcon, ArrowUpTrayIcon, CheckIcon } from '@heroicons/react/24/solid'
 import ProductImage from '@/components/product/ProductImage'
 import Image from 'next/image'
+import { formatCurrency } from "@/utils"
+import { useShoppingCart } from '@/components/context/CartContext'
 
 export default function MyDialog() {
     // The open/closed state lives outside of the Dialog and is managed by you
@@ -15,6 +17,7 @@ export default function MyDialog() {
     let [isLoading, setIsLoading] = useState(false)
     const { id } = useParams()
     const router = useRouter()
+    const { increaseItemQuantity, isProductAddedToCart } = useShoppingCart()
 
     useEffect(() => {
         let getProduct = async () => {
@@ -57,7 +60,7 @@ export default function MyDialog() {
                                     <div className='flex-1'>
                                         <div>
                                             <h4 className='font-semibold'>{product?.title}</h4>
-                                            <p className='font-medium text-sm'>{product?.price} $</p>
+                                            <p className='text-gray-500 font-semibold'>{product?.price && formatCurrency(product?.price)}</p>
                                         </div>
 
                                         <div className='flex items-center text-sm my-4'>
@@ -83,11 +86,20 @@ export default function MyDialog() {
                                         <p className='line-clamp-5 text-sm'>{product?.description}</p>
                                     </div>
                                     <div className='space-y-3 text-sm'>
-                                        <button className='button py-3 w-full border bg-lblue-200 text-white border-transparent hover:text-black hover:border-lblue-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
-                                            <ShoppingCartIcon className='h-4 w-4' />
-                                            Add to cart
-                                        </button>
-                                        <button onClick={() => window.location.reload()} className='button py-3 w-full border hover:bg-lblue-200 hover:text-white hover:border-transparent border-lblue-200 bg-transparent flex justify-center items-center gap-2 rounded'>
+                                        {product?.id && isProductAddedToCart(product.id) ?
+                                            (
+                                                <div className='flex justify-center items-center gap-2 text-green-600'>
+                                                    <CheckIcon className='h-4 w-4' />
+                                                    <h5> Product added to cart</h5>
+                                                </div>
+                                            ) : (
+                                                <button onClick={() => product?.id && increaseItemQuantity(product.id)} className='button py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
+                                                    <ShoppingCartIcon className='h-4 w-4' />
+                                                    Add to cart
+                                                </button>
+                                            )
+                                        }
+                                        <button onClick={() => window.location.reload()} className='button py-3 w-full border hover:bg-primary-200 hover:text-white hover:border-transparent border-primary-200 bg-transparent flex justify-center items-center gap-2 rounded'>
                                             <ArrowUpTrayIcon className='h-4 w-4' />
                                             View full details
                                         </button>

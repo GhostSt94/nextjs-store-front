@@ -1,5 +1,6 @@
 import Link from "next/link"
 import ProductImage from "./ProductImage"
+import { formatCurrency } from "@/utils"
 
 type Props = {
   product: Product
@@ -14,8 +15,8 @@ export default function Product({ product }: Props) {
         <ProductImage product={product} fill />
       </div>
       <div className="font-semibold flex items-center justify-between">
-        <h3 className="w-44 truncate">{title}</h3>
-        <h5>{price}</h5>
+        <h3 className="w-44 truncate" title={title}>{title}</h3>
+        <h5>{formatCurrency(price)}</h5>
       </div>
 
       <div>

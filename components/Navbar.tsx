@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import CartIcon from "./cart/CartIcon"
 
 export default function Navbar() {
   return (
@@ -14,12 +15,10 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center space-x-2.5 text-sm font-semibold">
-        <button className="button border-2 bg-lblue-200 text-white border-transparent hover:border-lblue-200 hover:bg-transparent hover:text-black py-2 px-7 rounded">
+        <button className="button border-2 bg-primary-200 text-white border-transparent hover:border-primary-200 hover:bg-transparent hover:text-black py-2 px-7 rounded-full">
           Log in
         </button>
-        <button className="button border-2 hover:bg-lblue-200 hover:text-white hover:border-transparent border-lblue-200 bg-transparent py-2 px-7 rounded">
-          Sign up
-        </button>
+        <CartIcon />
       </div>
     </header>
   )
