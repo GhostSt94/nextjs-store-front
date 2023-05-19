@@ -41,7 +41,7 @@ export default function MyDialog() {
             <div className="fixed inset-0 bg-black/30" aria-hidden='true' />
             <div className='fixed inset-0 overflow-y-auto'>
                 <div className='flex min-h-full items-center justify-center p-4'>
-                    <Dialog.Panel className='mx-auto max-w-3xl rounded bg-white p-10'>
+                    <Dialog.Panel className='mx-auto max-w-3xl rounded bg-white p-6 md:p-10'>
                         {isLoading ? (
                             <Image
                                 src='/assets/loader.svg'
@@ -50,9 +50,9 @@ export default function MyDialog() {
                                 alt='loader'
                             />
                         ) : (
-                            <div className='flex gap-x-8 h-96'>
+                            <div className='flex flex-col items-center md:flex-row gap-x-8 gap-y-3 md:gap-y-0 h-96 overflow-auto'>
                                 {product?.image && (
-                                    <div className='relative w-72 h-full hidden md:inline'>
+                                    <div className='relative w-72 h-full inline'>
                                         <ProductImage product={product} fill />
                                     </div>)}
 
@@ -63,7 +63,7 @@ export default function MyDialog() {
                                             <p className='text-gray-500 font-semibold'>{product?.price && formatCurrency(product?.price)}</p>
                                         </div>
 
-                                        <div className='flex items-center text-sm my-4'>
+                                        <div className='flex items-center text-sm my-2 md:my-4'>
                                             <p>({product?.rating.rate})</p>
                                             {product?.rating.rate && (
                                                 <div className='flex items-center ml-2 mr-6'>
@@ -83,7 +83,7 @@ export default function MyDialog() {
                                                 </div>
                                             )}
                                         </div>
-                                        <p className='line-clamp-5 text-sm'>{product?.description}</p>
+                                        <p className='line-clamp-4 md:line-clamp-5 text-sm mb-2 md:mb-0'>{product?.description}</p>
                                     </div>
                                     <div className='space-y-3 text-sm'>
                                         {product?.id && isProductAddedToCart(product.id) ?
@@ -93,13 +93,13 @@ export default function MyDialog() {
                                                     <h5> Product added to cart</h5>
                                                 </div>
                                             ) : (
-                                                <button onClick={() => product?.id && increaseItemQuantity(product.id)} className='button py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
+                                                <button onClick={() => product?.id && increaseItemQuantity(product.id)} className='button py-2 md:py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
                                                     <ShoppingCartIcon className='h-4 w-4' />
                                                     Add to cart
                                                 </button>
                                             )
                                         }
-                                        <button onClick={() => window.location.reload()} className='button py-3 w-full border hover:bg-primary-200 hover:text-white hover:border-transparent border-primary-200 bg-transparent flex justify-center items-center gap-2 rounded'>
+                                        <button onClick={() => window.location.reload()} className='button py-2 md:py-3 w-full border hover:bg-primary-200 hover:text-white hover:border-transparent border-primary-200 bg-transparent flex justify-center items-center gap-2 rounded'>
                                             <ArrowUpTrayIcon className='h-4 w-4' />
                                             View full details
                                         </button>
