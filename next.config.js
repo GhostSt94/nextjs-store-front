@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        appDir: true,
+        serverComponentsExternalPackages: ['mongoose']
+    },
     images: {
-        domains: ['fakestoreapi.com']
+        domains: ['fakestoreapi.com', 'lh3.googleusercontent.com']
+    },
+    webpack(config) {
+        config.experiments = {
+            ...config.experiments,
+            topLevelAwait: true
+        }
+        return config
     }
 }
 

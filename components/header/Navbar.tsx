@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import CartIcon from "./cart/CartIcon"
+import CartIcon from "../cart/CartIcon"
+import LoginButton from "./login"
 
 export default function Navbar() {
   return (
@@ -15,9 +16,10 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center space-x-2.5 text-sm font-semibold">
-        <button className="button border-2 bg-primary-200 text-white border-transparent hover:border-primary-200 hover:bg-transparent hover:text-black py-2 px-7 rounded-full">
+        {/* <button className="button border-2 bg-primary-200 text-white border-transparent hover:border-primary-200 hover:bg-transparent hover:text-black py-2 px-7 rounded-full">
           Log in
-        </button>
+        </button> */}
+        <LoginButton />
         <CartIcon />
       </div>
     </header>

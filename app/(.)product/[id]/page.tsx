@@ -50,7 +50,7 @@ export default function MyDialog() {
                                 alt='loader'
                             />
                         ) : (
-                            <div className='flex flex-col items-center md:flex-row gap-x-8 gap-y-3 md:gap-y-0 h-96 overflow-auto'>
+                            <div className='flex flex-col items-center md:flex-row gap-x-8 gap-y-3 md:gap-y-0 h-96'>
                                 {product?.image && (
                                     <div className='relative w-72 h-full inline'>
                                         <ProductImage product={product} fill />

@@ -17,7 +17,7 @@ export default function OffCanvaCart() {
                         <XMarkIcon className="w-7 h-7 p-1 rounded-full cursor-pointer hover:bg-black/10" onClick={() => closeCart()} />
                     </div>
 
-                    <div className="overflow-y-auto flex flex-col gap-3 flex-1 cartItems">
+                    <div className="overflow-y-auto flex flex-col gap-3 flex-1 transitionDiv">
                         {
                             cartItems.length ?
                                 (cartItems.map(item => <CartItem key={item.id} data={item} />))
