@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
 import { useParams, useRouter } from 'next/navigation'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
-import { StarIcon, ShoppingCartIcon, ArrowUpTrayIcon, CheckIcon } from '@heroicons/react/24/solid'
+import { StarIcon, ArrowUpTrayIcon } from '@heroicons/react/24/solid'
 import ProductImage from '@/components/product/ProductImage'
 import Image from 'next/image'
 import { formatCurrency } from "@/utils"
-import { useShoppingCart } from '@/components/context/CartContext'
+import AddToCart from '@/components/cart/AddToCart'
 
 export default function MyDialog() {
     // The open/closed state lives outside of the Dialog and is managed by you
@@ -17,7 +17,6 @@ export default function MyDialog() {
     let [isLoading, setIsLoading] = useState(false)
     const { id } = useParams()
     const router = useRouter()
-    const { increaseItemQuantity, isProductAddedToCart } = useShoppingCart()
 
     useEffect(() => {
         let getProduct = async () => {
@@ -86,19 +85,7 @@ export default function MyDialog() {
                                         <p className='line-clamp-4 md:line-clamp-5 text-sm mb-2 md:mb-1'>{product?.description}</p>
                                     </div>
                                     <div className='space-y-3 text-sm'>
-                                        {product?.id && isProductAddedToCart(product.id) ?
-                                            (
-                                                <div className='flex justify-center items-center gap-2 text-green-600 py-2 md:py-3'>
-                                                    <CheckIcon className='h-4 w-4' />
-                                                    <h5> Product added to cart</h5>
-                                                </div>
-                                            ) : (
-                                                <button onClick={() => product?.id && increaseItemQuantity(product.id, { id: product.id, price: product.price, quantity: 1 })} className='button py-2 md:py-3 w-full border bg-primary-200 text-white border-transparent hover:text-black hover:border-primary-200 hover:bg-transparent flex justify-center items-center gap-2 rounded'>
-                                                    <ShoppingCartIcon className='h-4 w-4' />
-                                                    Add to cart
-                                                </button>
-                                            )
-                                        }
+                                        {product && <AddToCart product={product} />}
                                         <button onClick={() => window.location.reload()} className='button py-2 md:py-3 w-full border hover:bg-primary-200 hover:text-white hover:border-transparent border-primary-200 bg-transparent flex justify-center items-center gap-2 rounded'>
                                             <ArrowUpTrayIcon className='h-4 w-4' />
                                             View full details

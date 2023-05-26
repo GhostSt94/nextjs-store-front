@@ -36,8 +36,7 @@
     ".next/types/**/*.ts",
     "app/api/[...nextauth]/route.js",
     "adapters/mongo.js",
-    "components/Provider.jsx",
-    "app/api/auth/[...nextauth]/route.js"
+    "components/Provider.jsx"
   ],
   "exclude": [
     "node_modules"
