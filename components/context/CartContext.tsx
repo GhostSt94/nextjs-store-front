@@ -15,6 +15,7 @@ type CartContext = {
     isProductAddedToCart: (id: number) => boolean
     isOpen: boolean
     total: () => number
+    addOrdreWithPrice: (item_?: OrderPrice) => void
 }
 type OrderPrice = {
     id: number, price: number, quantity: number
@@ -65,12 +66,15 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems((currItems) => currItems.filter(item => item.id !== id))
     }
     const cartQuantity = cartItems.length
-    const openCart = () => setIsOpen(true)
+    const openCart = () => location.pathname !== '/shopping-cart' && setIsOpen(true)
     const closeCart = () => setIsOpen(false)
     const total = () => ordersWithPrice.reduce((total, { price, quantity }) => total + (price * quantity), 0)
+    const addOrdreWithPrice = (item_?: OrderPrice) => {
+        item_ && !ordersWithPrice.find(el => el.id === item_.id) && setOrdersWithPrice(prev => [...prev, item_])
+    }
 
     return (
-        <CartContext.Provider value={{ total, cartItems, cartQuantity, isOpen, isProductAddedToCart, openCart, closeCart, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart }}>
+        <CartContext.Provider value={{ addOrdreWithPrice, total, cartItems, cartQuantity, isOpen, isProductAddedToCart, openCart, closeCart, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart }}>
             {children}
         </CartContext.Provider>
     )
